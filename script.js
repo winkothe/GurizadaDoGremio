@@ -76,8 +76,9 @@ const perguntas = [
     },
   ];
 
-  let  atual = 0;
-  let perguntaAtual;
+let atual = 0;
+let perguntaAtual;
+let historiaFinal = "";
 
   function mostraPergunta(){
     perguntaAtual = perguntas[atual];
@@ -85,3 +86,16 @@ const perguntas = [
   }
 
   mostraPergunta()
+
+  function mostraAlternativas() {
+  for (const alternativa of perguntaAtual.alternativas) {
+    const botaoAlternativa = document.createElement("button");
+    botaoAlternativa.textContent = alternativa.texto;
+    botaoAlternativa.addEventListener("click", function() {
+      atual++;
+      mostraPergunta();
+    });
+    caixaAlternativas.appendChild(botaoAlternativa);
+  }
+}
+mostraPergunta()
